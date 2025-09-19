@@ -1,0 +1,9 @@
+root=true
+
+[*]
+encoding = utf-8
+indent-style = space
+
+[*.scm]
+indent-size = 2
+indent-style = space

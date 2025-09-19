@@ -1,0 +1,8 @@
+[project]
+name = "sdff"
+version = "0.1.0"
+requires-python = ">=3.13"
+dependencies = [
+    "entangled-cli>=2.1.13",
+    "mkdocs-material>=9.6.20",
+]

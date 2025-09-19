@@ -1,0 +1,32 @@
+{
+  "files": [
+    {
+      "deps": [],
+      "hexdigest": "a494ec4a2b6cbcf85ad7f6cb8f186519be374acfd46ee4bd157eed849b928605",
+      "modified": "2025-09-19T11:14:36.836931",
+      "path": "docs/ch2-dsl.md",
+      "size": 3223
+    },
+    {
+      "deps": null,
+      "hexdigest": "860feaea5036c336f218bf664d70cc67a18b05284a5d244f2b539511b7bae935",
+      "modified": "2025-09-16T09:14:09.166904",
+      "path": "docs/index.md",
+      "size": 689
+    },
+    {
+      "deps": [
+        "docs/ch2-dsl.md"
+      ],
+      "hexdigest": "427540b22bfbb952b194a1fe733f3edf75200021817419a619e821ee909c5b8d",
+      "modified": "2025-09-18T08:53:22.140233",
+      "path": "scheme/functional.scm",
+      "size": 1930
+    }
+  ],
+  "source": [],
+  "target": [
+    "scheme/functional.scm"
+  ],
+  "version": "2.1.13"
+}
