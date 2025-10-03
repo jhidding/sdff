@@ -2,10 +2,17 @@
   "files": [
     {
       "deps": [],
-      "hexdigest": "a494ec4a2b6cbcf85ad7f6cb8f186519be374acfd46ee4bd157eed849b928605",
-      "modified": "2025-09-19T11:14:36.836931",
+      "hexdigest": "a6a3be25c1eb2e6093ed543395c48967941711828c85f3222c9b9e615b6fc63c",
+      "modified": "2025-10-03T22:56:38.958530",
+      "path": ".entangled/repl-session/scheme-ch2.json",
+      "size": 903
+    },
+    {
+      "deps": null,
+      "hexdigest": "a84e45755ed481930b85bc9543f0279b0c18aaa66210db7c89fa3033f5bf1c13",
+      "modified": "2025-10-03T22:56:09.526300",
       "path": "docs/ch2-dsl.md",
-      "size": 3223
+      "size": 3702
     },
     {
       "deps": null,
@@ -18,15 +25,15 @@
       "deps": [
         "docs/ch2-dsl.md"
       ],
-      "hexdigest": "427540b22bfbb952b194a1fe733f3edf75200021817419a619e821ee909c5b8d",
-      "modified": "2025-09-18T08:53:22.140233",
+      "hexdigest": "6300ac26d7ff2a6213ab626187ef54159613d26f130334842880507fb88505d2",
+      "modified": "2025-10-03T22:51:39.590706",
       "path": "scheme/functional.scm",
-      "size": 1930
+      "size": 1786
     }
   ],
   "source": [],
   "target": [
     "scheme/functional.scm"
   ],
-  "version": "2.1.13"
+  "version": "2.2.1"
 }

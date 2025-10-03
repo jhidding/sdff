@@ -1,21 +1,18 @@
 ; ~/~ begin <<docs/ch2-dsl.md#scheme/functional.scm>>[init]
 ;| file: scheme/functional.scm
-(define-library (functional)
-  (export compose identity iterate parallel-combine)
+(library (functional)
+  (export compose identity iterate parallel-combine thunk?)
   (import (rnrs)
           (only (chezscheme) procedure-arity-mask make-wrapper-procedure))
 
   ; ~/~ begin <<docs/ch2-dsl.md#functional>>[init]
-  ;| id: functional
   (define identity values)
   ; ~/~ end
   ; ~/~ begin <<docs/ch2-dsl.md#functional>>[1]
-  ;| id: functional
   (define (compose . fs)
     (fold-right compose-2 identity fs))
   ; ~/~ end
   ; ~/~ begin <<docs/ch2-dsl.md#functional>>[2]
-  ;| id: functional
   (define (iterate n)
     (lambda (f)
       (if (= n 0)
@@ -23,7 +20,6 @@
         (compose f ((iterate (- n 1)) f)))))
   ; ~/~ end
   ; ~/~ begin <<docs/ch2-dsl.md#functional>>[3]
-  ;| id: functional
   (define (compose-2 f g)
     (let ((arity-mask (procedure-arity-mask g)))
       (make-wrapper-procedure
@@ -34,11 +30,10 @@
         arity-mask
         #f)))
 
-  (define (thunk? proc) (not (zero? (bitwise-and 1 (arity-mask (procedure-arity-mask proc))))))
+  (define (thunk? proc) (= 1 (procedure-arity-mask proc)))
   (define (all pred xs) (not (find (compose not pred) xs)))
   ; ~/~ end
   ; ~/~ begin <<docs/ch2-dsl.md#functional>>[4]
-  ;| id: functional
   (define (xor a b) (if a (not b) b))
 
   (define (parallel-combine h . fs)

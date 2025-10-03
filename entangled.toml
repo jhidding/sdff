@@ -1,7 +1,9 @@
-version="2.0"
-watch_list=["docs/*.md"]
-hooks=["quarto_attributes"]
+version = "2.0"
+watch_list = ["docs/**/*.md"]
+hooks = ["quarto_attributes", "repl"]
 
-[markers]
-open="^(?P<indent>\\s*)```(?P<properties>.*)$"
-close="^(?P<indent>\\s*)```\\s*$"
+[hook.repl.config.Lisp]
+command = "scheme --eedisable --libdirs scheme"
+first_prompt = "> "
+change_prompt = '(waiter-prompt-string "{key}>")'
+prompt = "{key}> "

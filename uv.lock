@@ -156,7 +156,7 @@ wheels = [
 
 [[package]]
 name = "entangled-cli"
-version = "2.1.13"
+version = "2.2.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "argh" },
@@ -164,16 +164,18 @@ dependencies = [
     { name = "copier" },
     { name = "filelock" },
     { name = "mawk" },
+    { name = "msgspec" },
     { name = "pexpect" },
     { name = "pyyaml" },
+    { name = "repl-session" },
     { name = "rich" },
     { name = "rich-argparse" },
     { name = "tomlkit" },
     { name = "watchdog" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/6a/35/568227a7e821e42520f769ca9bee162dfd8ef03e18616d1201577a2e25e0/entangled_cli-2.1.13.tar.gz", hash = "sha256:c17b1e479f1ac9689187a4ed7eb31c066af3458cdc663afffcb0f10051228642", size = 36900, upload-time = "2025-04-24T23:01:11.703Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/b9/68/38076816af35c64c3fb2712824cd66ec76f1050d4a401d0d39a80b478da9/entangled_cli-2.2.1.tar.gz", hash = "sha256:c48e49d625ab1237b58d158f5f0e6e2d4321505bfe70b5eb1584eb75f25f5287", size = 37988, upload-time = "2025-10-03T13:42:33.929Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/07/8c/cf9c69a44aa28900ceef8ab17aafc2beefab13d3cab6b771a4e3109e3c2e/entangled_cli-2.1.13-py3-none-any.whl", hash = "sha256:01822e05e393934ec1bc9f867d179581703282352b836b69d5cf654ee8e6e6b7", size = 50175, upload-time = "2025-04-24T23:01:09.981Z" },
+    { url = "https://files.pythonhosted.org/packages/2f/e4/5ee7b5cbe5042097dcfcf5d5c969082403425b0dcffaae1b0dc94a0c9ccb/entangled_cli-2.2.1-py3-none-any.whl", hash = "sha256:941d65b1c2862f3e3d570eaf3e909ab4c235b16f1470ce8676b22ab52311127e", size = 52251, upload-time = "2025-10-03T13:42:32.859Z" },
 ]
 
 [[package]]
@@ -291,11 +293,11 @@ wheels = [
 
 [[package]]
 name = "mawk"
-version = "0.1.4"
+version = "0.1.7"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/45/42/0cb0d6d02649f50e2a8918a350152d8d139839cf74befeeeb83668302e48/mawk-0.1.4.tar.gz", hash = "sha256:4e115b2f7eae97406bf2360bafba22efee03d29ff298436a69db506b1535d2f1", size = 7216, upload-time = "2023-06-04T12:53:42.815Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/7b/50/b47b5b2697c4a11fcf4e9308bf635c35e033961efa8a8712536997258ce5/mawk-0.1.7.tar.gz", hash = "sha256:41b2a5185e6c5aa3d4cbd860a1a9196ad01763ded84a54234e3b92037f40136f", size = 7490, upload-time = "2025-10-01T15:20:20.104Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/51/29/b4ddddd1ae74ce2651e7eedf1871a6b2240433eeec070622f81b985d5e70/mawk-0.1.4-py3-none-any.whl", hash = "sha256:8ab7ce0808d10769f8aa05af8448046c290af5f529db874b44a8fd56056c4462", size = 7941, upload-time = "2023-06-04T12:53:41.112Z" },
+    { url = "https://files.pythonhosted.org/packages/30/4d/1cf26c06f9d11008bad7ccc88728deccf27d58dac4576c4d09d7d96d2831/mawk-0.1.7-py3-none-any.whl", hash = "sha256:ca03b3409b48a23192a669af14385409a52400b6eaf1e599332ca4e3243604be", size = 8374, upload-time = "2025-10-01T15:20:19.076Z" },
 ]
 
 [[package]]
@@ -341,6 +343,20 @@ wheels = [
 ]
 
 [[package]]
+name = "mkdocs-entangled-plugin"
+version = "0.5.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "entangled-cli" },
+    { name = "mawk" },
+    { name = "mkdocs" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/a5/1b/b53bc4e2bdfa6130bcb1574cdd9810ddefd4dc20e12303f534e8a3c75629/mkdocs_entangled_plugin-0.5.0.tar.gz", hash = "sha256:8170dd25a7ab4598adf29b5f14419e895f7ed482569b8d3cecc60a80c238109f", size = 7537, upload-time = "2025-10-03T14:04:56.215Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/10/af/71f3c1e667bedb4a9800099453523898289fe019eb85bbf8350d6c147757/mkdocs_entangled_plugin-0.5.0-py3-none-any.whl", hash = "sha256:62f34e673523b21769d57db429224f6121a2e37c4fa197c80e101ce46c55f098", size = 9233, upload-time = "2025-10-03T14:04:54.801Z" },
+]
+
+[[package]]
 name = "mkdocs-get-deps"
 version = "0.2.0"
 source = { registry = "https://pypi.org/simple" }
@@ -356,12 +372,11 @@ wheels = [
 
 [[package]]
 name = "mkdocs-material"
-version = "9.6.20"
+version = "9.6.21"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "babel" },
     { name = "backrefs" },
-    { name = "click" },
     { name = "colorama" },
     { name = "jinja2" },
     { name = "markdown" },
@@ -372,9 +387,9 @@ dependencies = [
     { name = "pymdown-extensions" },
     { name = "requests" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/ba/ee/6ed7fc739bd7591485c8bec67d5984508d3f2733e708f32714c21593341a/mkdocs_material-9.6.20.tar.gz", hash = "sha256:e1f84d21ec5fb730673c4259b2e0d39f8d32a3fef613e3a8e7094b012d43e790", size = 4037822, upload-time = "2025-09-15T08:48:01.816Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/ff/d5/ab83ca9aa314954b0a9e8849780bdd01866a3cfcb15ffb7e3a61ca06ff0b/mkdocs_material-9.6.21.tar.gz", hash = "sha256:b01aa6d2731322438056f360f0e623d3faae981f8f2d8c68b1b973f4f2657870", size = 4043097, upload-time = "2025-09-30T19:11:27.517Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/67/d8/a31dd52e657bf12b20574706d07df8d767e1ab4340f9bfb9ce73950e5e59/mkdocs_material-9.6.20-py3-none-any.whl", hash = "sha256:b8d8c8b0444c7c06dd984b55ba456ce731f0035c5a1533cc86793618eb1e6c82", size = 9193367, upload-time = "2025-09-15T08:47:58.722Z" },
+    { url = "https://files.pythonhosted.org/packages/cf/4f/98681c2030375fe9b057dbfb9008b68f46c07dddf583f4df09bf8075e37f/mkdocs_material-9.6.21-py3-none-any.whl", hash = "sha256:aa6a5ab6fb4f6d381588ac51da8782a4d3757cb3d1b174f81a2ec126e1f22c92", size = 9203097, upload-time = "2025-09-30T19:11:24.063Z" },
 ]
 
 [[package]]
@@ -384,6 +399,21 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/79/9b/9b4c96d6593b2a541e1cb8b34899a6d021d208bb357042823d4d2cabdbe7/mkdocs_material_extensions-1.3.1.tar.gz", hash = "sha256:10c9511cea88f568257f960358a467d12b970e1f7b2c0e5fb2bb48cab1928443", size = 11847, upload-time = "2023-11-22T19:09:45.208Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/5b/54/662a4743aa81d9582ee9339d4ffa3c8fd40a4965e033d77b9da9774d3960/mkdocs_material_extensions-1.3.1-py3-none-any.whl", hash = "sha256:adff8b62700b25cb77b53358dad940f3ef973dd6db797907c49e3c2ef3ab4e31", size = 8728, upload-time = "2023-11-22T19:09:43.465Z" },
+]
+
+[[package]]
+name = "msgspec"
+version = "0.19.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/cf/9b/95d8ce458462b8b71b8a70fa94563b2498b89933689f3a7b8911edfae3d7/msgspec-0.19.0.tar.gz", hash = "sha256:604037e7cd475345848116e89c553aa9a233259733ab51986ac924ab1b976f8e", size = 216934, upload-time = "2024-12-27T17:40:28.597Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/3c/cb/2842c312bbe618d8fefc8b9cedce37f773cdc8fa453306546dba2c21fd98/msgspec-0.19.0-cp313-cp313-macosx_10_13_x86_64.whl", hash = "sha256:f12d30dd6266557aaaf0aa0f9580a9a8fbeadfa83699c487713e355ec5f0bd86", size = 190498, upload-time = "2024-12-27T17:40:00.427Z" },
+    { url = "https://files.pythonhosted.org/packages/58/95/c40b01b93465e1a5f3b6c7d91b10fb574818163740cc3acbe722d1e0e7e4/msgspec-0.19.0-cp313-cp313-macosx_11_0_arm64.whl", hash = "sha256:82b2c42c1b9ebc89e822e7e13bbe9d17ede0c23c187469fdd9505afd5a481314", size = 183950, upload-time = "2024-12-27T17:40:04.219Z" },
+    { url = "https://files.pythonhosted.org/packages/e8/f0/5b764e066ce9aba4b70d1db8b087ea66098c7c27d59b9dd8a3532774d48f/msgspec-0.19.0-cp313-cp313-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:19746b50be214a54239aab822964f2ac81e38b0055cca94808359d779338c10e", size = 210647, upload-time = "2024-12-27T17:40:05.606Z" },
+    { url = "https://files.pythonhosted.org/packages/9d/87/bc14f49bc95c4cb0dd0a8c56028a67c014ee7e6818ccdce74a4862af259b/msgspec-0.19.0-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:60ef4bdb0ec8e4ad62e5a1f95230c08efb1f64f32e6e8dd2ced685bcc73858b5", size = 213563, upload-time = "2024-12-27T17:40:10.516Z" },
+    { url = "https://files.pythonhosted.org/packages/53/2f/2b1c2b056894fbaa975f68f81e3014bb447516a8b010f1bed3fb0e016ed7/msgspec-0.19.0-cp313-cp313-musllinux_1_2_aarch64.whl", hash = "sha256:ac7f7c377c122b649f7545810c6cd1b47586e3aa3059126ce3516ac7ccc6a6a9", size = 213996, upload-time = "2024-12-27T17:40:12.244Z" },
+    { url = "https://files.pythonhosted.org/packages/aa/5a/4cd408d90d1417e8d2ce6a22b98a6853c1b4d7cb7669153e4424d60087f6/msgspec-0.19.0-cp313-cp313-musllinux_1_2_x86_64.whl", hash = "sha256:a5bc1472223a643f5ffb5bf46ccdede7f9795078194f14edd69e3aab7020d327", size = 219087, upload-time = "2024-12-27T17:40:14.881Z" },
+    { url = "https://files.pythonhosted.org/packages/23/d8/f15b40611c2d5753d1abb0ca0da0c75348daf1252220e5dda2867bd81062/msgspec-0.19.0-cp313-cp313-win_amd64.whl", hash = "sha256:317050bc0f7739cb30d257ff09152ca309bf5a369854bbf1e57dffc310c1f20f", size = 187432, upload-time = "2024-12-27T17:40:16.256Z" },
 ]
 
 [[package]]
@@ -599,6 +629,35 @@ wheels = [
 ]
 
 [[package]]
+name = "repl-session"
+version = "0.2.1"
+source = { editable = "../entangled/repl-session" }
+dependencies = [
+    { name = "argh" },
+    { name = "msgspec" },
+    { name = "pexpect" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "argh", specifier = ">=0.30.5" },
+    { name = "msgspec", specifier = ">=0.19.0" },
+    { name = "pexpect", specifier = ">=4.9.0" },
+]
+
+[package.metadata.requires-dev]
+dev = [
+    { name = "basedpyright", specifier = ">=1.31.4" },
+    { name = "entangled-cli", specifier = ">=2.1.13" },
+    { name = "mkdocs-macros-plugin", specifier = ">=1.3.9" },
+    { name = "mkdocs-material", specifier = ">=9.6.20" },
+    { name = "python-lsp-server", specifier = ">=1.13.1" },
+    { name = "ruff", specifier = ">=0.13.2" },
+    { name = "ty", specifier = ">=0.0.1a21" },
+    { name = "types-pexpect", specifier = ">=4.9.0.20250916" },
+]
+
+[[package]]
 name = "requests"
 version = "2.32.5"
 source = { registry = "https://pypi.org/simple" }
@@ -644,13 +703,19 @@ version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
     { name = "entangled-cli" },
+    { name = "mkdocs" },
+    { name = "mkdocs-entangled-plugin" },
     { name = "mkdocs-material" },
+    { name = "repl-session" },
 ]
 
 [package.metadata]
 requires-dist = [
-    { name = "entangled-cli", specifier = ">=2.1.13" },
-    { name = "mkdocs-material", specifier = ">=9.6.20" },
+    { name = "entangled-cli", specifier = ">=2.2.1" },
+    { name = "mkdocs", specifier = ">=1.6.1" },
+    { name = "mkdocs-entangled-plugin", specifier = ">=0.5.0" },
+    { name = "mkdocs-material", specifier = ">=9.6.21" },
+    { name = "repl-session", editable = "../entangled/repl-session" },
 ]
 
 [[package]]
