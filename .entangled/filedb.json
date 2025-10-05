@@ -2,17 +2,17 @@
   "files": [
     {
       "deps": [],
-      "hexdigest": "a6a3be25c1eb2e6093ed543395c48967941711828c85f3222c9b9e615b6fc63c",
-      "modified": "2025-10-03T22:56:38.958530",
+      "hexdigest": "35601bed9b07cf14f845986729a906502ab9da6572b575fb8de7be6425eb5021",
+      "modified": "2025-10-05T14:33:33.762788",
       "path": ".entangled/repl-session/scheme-ch2.json",
-      "size": 903
+      "size": 759
     },
     {
       "deps": null,
-      "hexdigest": "a84e45755ed481930b85bc9543f0279b0c18aaa66210db7c89fa3033f5bf1c13",
-      "modified": "2025-10-03T22:56:09.526300",
+      "hexdigest": "36deeea09d0b3ba315b52ac2d6c83b5070f81d1f46ba4c0372b0972cd1713249",
+      "modified": "2025-10-05T16:58:48.220949",
       "path": "docs/ch2-dsl.md",
-      "size": 3702
+      "size": 6868
     },
     {
       "deps": null,
@@ -25,15 +25,15 @@
       "deps": [
         "docs/ch2-dsl.md"
       ],
-      "hexdigest": "6300ac26d7ff2a6213ab626187ef54159613d26f130334842880507fb88505d2",
-      "modified": "2025-10-03T22:51:39.590706",
-      "path": "scheme/functional.scm",
-      "size": 1786
+      "hexdigest": "c892d35aaff29a65d64ac9f77b70abf6e80b6e8b60b9468072885fbcba6ad5fa",
+      "modified": "2025-10-05T16:58:52.806960",
+      "path": "scheme/combinators.scm",
+      "size": 3124
     }
   ],
   "source": [],
   "target": [
-    "scheme/functional.scm"
+    "scheme/combinators.scm"
   ],
   "version": "2.2.1"
 }
