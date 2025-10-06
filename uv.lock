@@ -631,7 +631,7 @@ wheels = [
 [[package]]
 name = "repl-session"
 version = "0.2.1"
-source = { editable = "../entangled/repl-session" }
+source = { directory = "../../../../home/johannes/Projects/entangled/repl-session" }
 dependencies = [
     { name = "argh" },
     { name = "msgspec" },
@@ -715,7 +715,7 @@ requires-dist = [
     { name = "mkdocs", specifier = ">=1.6.1" },
     { name = "mkdocs-entangled-plugin", specifier = ">=0.5.0" },
     { name = "mkdocs-material", specifier = ">=9.6.21" },
-    { name = "repl-session", editable = "../entangled/repl-session" },
+    { name = "repl-session", directory = "../../../../home/johannes/Projects/entangled/repl-session" },
 ]
 
 [[package]]

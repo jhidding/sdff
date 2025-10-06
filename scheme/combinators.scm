@@ -2,7 +2,7 @@
 (library (combinators)
   (export
       ; ~/~ begin <<docs/ch2-dsl.md#combinators-export>>[init]
-      compose identity iterate parallel vmap const melt curry curry-helper
+      compose identity iterate parallel parallel-combine vmap const melt curry curry-helper
       ; ~/~ end
   )
   (import (rnrs)

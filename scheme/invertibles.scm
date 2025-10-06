@@ -1,12 +1,12 @@
 ; ~/~ begin <<docs/ch2-dsl.md#scheme/invertibles.scm>>[init]
 (library (invertibles)
+  (export make-invertible invertible? invert)
   (import (rnrs)
           (only (chezscheme)
               make-wrapper-procedure
+              wrapper-procedure?
               wrapper-procedure-procedure
               wrapper-procedure-data))
-
-  (export (make-invertible invertible? invert))
 
   (define-record-type invertible-data
       (fields inverse))

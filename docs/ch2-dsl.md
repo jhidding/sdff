@@ -252,7 +252,7 @@ We make it so that we can add to our combinators library when needed.
 ```
 
 ``` {.scheme #combinators-export}
-compose identity iterate parallel vmap const melt curry curry-helper
+compose identity iterate parallel parallel-combine vmap const melt curry curry-helper
 ```
 
 ``` {.scheme #combinators-import}
@@ -304,13 +304,13 @@ This uses non-standard Scheme code, and it is not very nice at all. We can abuse
 
 ``` {.scheme file=scheme/invertibles.scm}
 (library (invertibles)
+  (export make-invertible invertible? invert)
   (import (rnrs)
           (only (chezscheme)
               make-wrapper-procedure
+              wrapper-procedure?
               wrapper-procedure-procedure
               wrapper-procedure-data))
-
-  (export (make-invertible invertible? invert))
 
   (define-record-type invertible-data
       (fields inverse))
@@ -332,12 +332,92 @@ This uses non-standard Scheme code, and it is not very nice at all. We can abuse
 
 The way that physical units are dealt with in other systems is either through the type system (Julia's `Unitful.jl` or similar systems in C++), or as in Python's [Pint](https://pint.readthedocs.io), where values are combined with units to create a quantity.
 
+Maybe, some day I'll have the patience to implement this feature that already exists in most prevailing computation languages (and with much more convenient syntax too).
+
 ``` {.scheme file=scheme/units.scm}
 (library (units)
   (import (rnrs)
           (combinators)
           (invertibles))
+)
+```
 
+## Checkers
 
+This seems a little bit more fun. We build an engine that can check legality of checkers moves.
+
+``` {.scheme file=scheme/checkers.scm}
+(library (checkers)
+  (export range cartesian-product make-board current-pieces)
+  (import (rnrs)
+          (combinators))
+
+  (define (range a b step)
+     (do ((x a (+ x step))
+          (r '() (cons x r)))
+         ((>= x b) (reverse r))))
+
+  (define (unit-range a b) (range a b 1))
+
+  (define cartesian-product-2 (curry (f as bs)
+    (apply append (map (lambda (a) (map (lambda (b) (f a b)) bs)) as))))
+
+  (define (cartesian-product . args)
+    (fold-right (cartesian-product-2 cons) '(()) args))
+
+  (define try (curry (f x)
+      (if x (f x) x)))
+
+  (define-record-type board
+    (fields size turn fields)
+    (protocol
+      (lambda (new)
+        (lambda (size)
+          (let ((fields (apply vector (map (lambda (row)
+                                             (apply vector (map (start-position size row)
+                                                                (unit-range 0 size))))
+                                           (unit-range 0 size)))))
+            (new size 'white fields))))))
+
+  (define-record-type piece
+    (fields colour type))
+
+  (define black-single (make-piece 'black 'single))
+  (define white-single (make-piece 'white 'single))
+  (define black-crowned (make-piece 'black 'crowned))
+  (define white-crowned (make-piece 'white 'crowned))
+
+  (define start-position (curry (size row col)
+    (cond
+      ((even? (+ row col)) #f)
+      ((< row (- (/ size 2) 1)) white-single)
+      ((>= row (+ (/ size 2) 1)) black-single)
+      (else #f))))
+
+  (define (all-fields size)
+    (cartesian-product (unit-range 0 size) (unit-range 0 size)))
+
+  (define (used-fields b)
+    (filter
+        (lambda (p) (odd? (+ (car p) (cadr p))))
+        (all-fields (board-size b))))
+
+  (define (current-pieces b)
+    (filter
+      (lambda (p) (eq? (board-turn b) (try piece-colour (get-piece b p))))
+      (used-fields b)))
+
+  (define (position-on-board? b pos)
+    (let ((row (car pos))
+          (col (cadr pos)))
+      (and (<= 0 row) (< row (board-size b))
+           (<= 0 col) (< col (board-size b))
+           (odd? (+ col row)))))
+
+  (define (board-get b pos)
+    (assert (position-on-board? b pos))
+    (vector-ref
+      (vector-ref (board-fields b) (car pos))
+      (cadr pos)))
 )
 ```

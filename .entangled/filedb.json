@@ -9,15 +9,15 @@
     },
     {
       "deps": [],
-      "hexdigest": "7d3f2a9569c841ea98a4162f7988c0692114b9f4365e5745dced317c96b2355e",
-      "modified": "2025-10-06T02:16:36.766872",
+      "hexdigest": "6634f15eb56ced15d140d778dc6dab502173305203fd85362c88ae7c2d117f8d",
+      "modified": "2025-10-07T00:16:52.419182",
       "path": "docs/ch2-dsl.md",
-      "size": 10022
+      "size": 12599
     },
     {
       "deps": null,
       "hexdigest": "3ca7cdc6e0d692857ce8bf26b605180c442c6b077570b962f0a238fdfadbef51",
-      "modified": "2025-10-05T21:04:42.025687",
+      "modified": "2025-10-06T17:01:42.178161",
       "path": "docs/index.md",
       "size": 804
     },
@@ -25,32 +25,42 @@
       "deps": [
         "docs/ch2-dsl.md"
       ],
-      "hexdigest": "18ff72eb2e89acdefa57840d5e62ee2caf93fb82ac9ec0da01a0c5f876a53066",
-      "modified": "2025-10-05T20:59:16.964160",
+      "hexdigest": "58b3491d6901e290514c222b2ae8e6a44740d0239f2cbed483f262c5fc5879b9",
+      "modified": "2025-10-07T00:16:45.273320",
+      "path": "scheme/checkers.scm",
+      "size": 2275
+    },
+    {
+      "deps": [
+        "docs/ch2-dsl.md"
+      ],
+      "hexdigest": "c8b64cec1a9ab26d1df1158f1beea4b2e398cfca95613eb89e27984bb4988673",
+      "modified": "2025-10-06T17:11:19.005737",
       "path": "scheme/combinators.scm",
-      "size": 3269
+      "size": 3286
     },
     {
       "deps": [
         "docs/ch2-dsl.md"
       ],
-      "hexdigest": "f5f6879f424c4e936513d1e09450a13e3c84f023d9b6ec36c81b64c35ae9238a",
-      "modified": "2025-10-06T02:13:51.985732",
+      "hexdigest": "fb0195fdec522c7df8834d0cafe4cc836fdd6e37457a54cd443fea4965f09588",
+      "modified": "2025-10-06T17:09:47.608119",
       "path": "scheme/invertibles.scm",
-      "size": 770
+      "size": 800
     },
     {
       "deps": [
         "docs/ch2-dsl.md"
       ],
-      "hexdigest": "b97edf4f00eef5788910eec7ca0d85acc9152bc15003fcb9610c66d9e00e56b7",
-      "modified": "2025-10-06T00:46:10.874952",
+      "hexdigest": "d9a8a7e55861479d4a15334ebc37011893f1a84c5f1cf69f1556e2a24b0319a3",
+      "modified": "2025-10-06T18:31:03.833949",
       "path": "scheme/units.scm",
-      "size": 151
+      "size": 150
     }
   ],
   "source": [],
   "target": [
+    "scheme/checkers.scm",
     "scheme/combinators.scm",
     "scheme/invertibles.scm",
     "scheme/units.scm"

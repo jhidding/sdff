@@ -16,4 +16,4 @@ dependencies = [
 ]
 
 [tool.uv.sources]
-repl-session = { path = "../entangled/repl-session", editable = true }
+repl-session = { path = "../../../../home/johannes/Projects/entangled/repl-session" }
