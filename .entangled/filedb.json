@@ -2,38 +2,58 @@
   "files": [
     {
       "deps": [],
-      "hexdigest": "35601bed9b07cf14f845986729a906502ab9da6572b575fb8de7be6425eb5021",
-      "modified": "2025-10-05T14:33:33.762788",
+      "hexdigest": "ef1149815a7d4ffca85d05c4faf98671706439d877ea0989534472d8b8edbd86",
+      "modified": "2025-10-06T00:46:10.876045",
       "path": ".entangled/repl-session/scheme-ch2.json",
-      "size": 759
+      "size": 1145
     },
     {
-      "deps": null,
-      "hexdigest": "36deeea09d0b3ba315b52ac2d6c83b5070f81d1f46ba4c0372b0972cd1713249",
-      "modified": "2025-10-05T16:58:48.220949",
+      "deps": [],
+      "hexdigest": "7d3f2a9569c841ea98a4162f7988c0692114b9f4365e5745dced317c96b2355e",
+      "modified": "2025-10-06T02:16:36.766872",
       "path": "docs/ch2-dsl.md",
-      "size": 6868
+      "size": 10022
     },
     {
       "deps": null,
-      "hexdigest": "860feaea5036c336f218bf664d70cc67a18b05284a5d244f2b539511b7bae935",
-      "modified": "2025-09-16T09:14:09.166904",
+      "hexdigest": "3ca7cdc6e0d692857ce8bf26b605180c442c6b077570b962f0a238fdfadbef51",
+      "modified": "2025-10-05T21:04:42.025687",
       "path": "docs/index.md",
-      "size": 689
+      "size": 804
     },
     {
       "deps": [
         "docs/ch2-dsl.md"
       ],
-      "hexdigest": "c892d35aaff29a65d64ac9f77b70abf6e80b6e8b60b9468072885fbcba6ad5fa",
-      "modified": "2025-10-05T16:58:52.806960",
+      "hexdigest": "18ff72eb2e89acdefa57840d5e62ee2caf93fb82ac9ec0da01a0c5f876a53066",
+      "modified": "2025-10-05T20:59:16.964160",
       "path": "scheme/combinators.scm",
-      "size": 3124
+      "size": 3269
+    },
+    {
+      "deps": [
+        "docs/ch2-dsl.md"
+      ],
+      "hexdigest": "f5f6879f424c4e936513d1e09450a13e3c84f023d9b6ec36c81b64c35ae9238a",
+      "modified": "2025-10-06T02:13:51.985732",
+      "path": "scheme/invertibles.scm",
+      "size": 770
+    },
+    {
+      "deps": [
+        "docs/ch2-dsl.md"
+      ],
+      "hexdigest": "b97edf4f00eef5788910eec7ca0d85acc9152bc15003fcb9610c66d9e00e56b7",
+      "modified": "2025-10-06T00:46:10.874952",
+      "path": "scheme/units.scm",
+      "size": 151
     }
   ],
   "source": [],
   "target": [
-    "scheme/combinators.scm"
+    "scheme/combinators.scm",
+    "scheme/invertibles.scm",
+    "scheme/units.scm"
   ],
   "version": "2.2.1"
 }

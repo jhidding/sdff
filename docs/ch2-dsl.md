@@ -4,7 +4,8 @@
 ;| session: .entangled/repl-session/scheme-ch2.json
 (import
     (rnrs)
-    (combinators))
+    (combinators)
+    (invertibles))
 ```
 
 ## Combinators
@@ -209,6 +210,24 @@ Maybe I should write a macro for auto-currying functions.
          (curry-helper (<xs> ...) () () (proc <xs> ...))))))
 ```
 
+We can try this on a multiply-add routine:
+
+``` {.scheme .repl #scheme-repl}
+(define mac (curry (a b c) (+ a (* b c))))
+```
+
+``` {.scheme .repl #scheme-repl}
+(mac 3 4 5)
+```
+
+``` {.scheme .repl #scheme-repl}
+((mac 3) 4 5)
+```
+
+``` {.scheme .repl #scheme-repl}
+((mac 3 4) 5)
+```
+
 Now, we can simply write:
 
 ``` {.scheme #combinators}
@@ -216,12 +235,109 @@ Now, we can simply write:
   (curry (x y z) ((x z) (y z))))
 ```
 
+### Library
+
+We make it so that we can add to our combinators library when needed.
+
 ``` {.scheme file=scheme/combinators.scm}
 (library (combinators)
-  (export compose identity iterate parallel vmap const melt curry curry-helper)
+  (export
+      <<combinators-export>>
+  )
   (import (rnrs)
-          (only (chezscheme) trace-define-syntax procedure-arity-mask make-wrapper-procedure))
-
+      <<combinators-import>>
+  )
   <<combinators>>
+)
+```
+
+``` {.scheme #combinators-export}
+compose identity iterate parallel vmap const melt curry curry-helper
+```
+
+``` {.scheme #combinators-import}
+(only (chezscheme) procedure-arity-mask make-wrapper-procedure)
+```
+
+## Regular Expressions
+
+We'll skip this section. It's a nice example of a DSL, and we should note the reasons why rephrasing regexes into this form can be useful:
+
+- always look at the primitives, the means of abstraction and means of combination
+- is the system closed under the means of combination?
+
+It turns out that regexes are not composable without rewriting.
+Why I'm skipping this: it looks like a lot of work with not much learned (yes regexes are terrible we all know). I prefer using a parser-combinator DSL where we can use regexes as primitives. Regexes are well known and can be used for configuring an application.
+
+## Wrappers
+
+We get an example around the ideal gas law.
+
+``` {.scheme}
+(define (gas-law-volume pressure temperature amount)
+    (/ (* amount gas-constant temperature) pressure))
+
+(define gas-constant 8.3144621)  ; J / (K mol)
+
+(define (sphere-radius volume)
+    (expt (/ volume (* 4/3 pi)) 1/3))
+
+(define pi (* 4 (atan 1 1)))
+```
+
+These equations assume we use standard SI units. We can write additional functions to convert between units.
+
+``` {.scheme}
+(define fahrenheit-to-celcius
+    (make-invertible
+        (lambda (f) (* 5/9 (- f 32)))
+        (lambda (c) (+ (* c 9/5) 32))))
+
+(define celcius-to-kelvin
+    (let ((zero-celcius 273.15))  ; K
+        (make-invertible
+            (lambda (c) (+ c zero-celcius))
+            (lambda (k) (- k zero-celcius)))))
+```
+
+This uses non-standard Scheme code, and it is not very nice at all. We can abuse Chez Scheme's `wrapper-procedure` mechanism.
+
+``` {.scheme file=scheme/invertibles.scm}
+(library (invertibles)
+  (import (rnrs)
+          (only (chezscheme)
+              make-wrapper-procedure
+              wrapper-procedure-procedure
+              wrapper-procedure-data))
+
+  (export (make-invertible invertible? invert))
+
+  (define-record-type invertible-data
+      (fields inverse))
+
+  (define (make-invertible a b)
+      (make-wrapper-procedure
+          a 2 (make-invertible-data b)))
+
+  (define (invertible? f)
+      (and (wrapper-procedure? f)
+           (invertible-data? (wrapper-procedure-data f))))
+
+  (define (invert f)
+      (let ((a (wrapper-procedure-procedure f))
+            (b (invertible-data-inverse (wrapper-procedure-data f))))
+          (make-invertible b a)))
+)
+```
+
+The way that physical units are dealt with in other systems is either through the type system (Julia's `Unitful.jl` or similar systems in C++), or as in Python's [Pint](https://pint.readthedocs.io), where values are combined with units to create a quantity.
+
+``` {.scheme file=scheme/units.scm}
+(library (units)
+  (import (rnrs)
+          (combinators)
+          (invertibles))
+
+
 )
 ```

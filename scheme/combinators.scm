@@ -1,9 +1,15 @@
 ; ~/~ begin <<docs/ch2-dsl.md#scheme/combinators.scm>>[init]
 (library (combinators)
-  (export compose identity iterate parallel vmap const melt curry curry-helper)
+  (export
+      ; ~/~ begin <<docs/ch2-dsl.md#combinators-export>>[init]
+      compose identity iterate parallel vmap const melt curry curry-helper
+      ; ~/~ end
+  )
   (import (rnrs)
-          (only (chezscheme) trace-define-syntax procedure-arity-mask make-wrapper-procedure))
-
+      ; ~/~ begin <<docs/ch2-dsl.md#combinators-import>>[init]
+      (only (chezscheme) procedure-arity-mask make-wrapper-procedure)
+      ; ~/~ end
+  )
   ; ~/~ begin <<docs/ch2-dsl.md#combinators>>[init]
   (define identity values)
   ; ~/~ end
