@@ -8,6 +8,16 @@
     (invertibles))
 ```
 
+``` {.python file=python/sdff/__init__.py}
+"""
+Main module for the Software Design for Flexibility book.
+"""
+```
+
+``` {.python .repl #python-repl}
+#| session: .entangled/repl-session/python-ch2.json
+```
+
 ## Combinators
 
 We meet our first bit of Scheme code in this chapter, and it is the `compose` function!
@@ -38,25 +48,72 @@ and then use `fold-right` to extend this to chain any number of functions. First
   (fold-right compose-2 identity fs))
 ```
 
+In Python we can write similar things:
+
+``` {.python file=python/sdff/combinators.py}
+from collections.abc import Callable
+from functools import reduce
+
+def compose_2[T, U, V](f: Callable[[U], V], g: Callable[[T], U]) -> Callable[[T], V]:
+    """Composes two function of a single argumeent."""
+    def composed(a: T) -> V:
+        return f(g(a))
+
+    return composed
+
+def compose(*args):
+    return reduce(compose_2, args)
+
+<<combinators-python>>
+```
+
+Now, Python does not have the similar distinction that Scheme has when it comes to multi-valued returns. We can however write another combinator to transform a function of many arguments into a functionn accepting a single tuple:
+
+``` {.python #combinators-python}
+def splat[*Ts, U](f: Callable[[*Ts], U]) -> Callable[[tuple[*Ts]],U]:
+    return lambda a: f(*a)
+```
+
 Example:
 
-``` {.scheme #combinators}
-(define (vmap f)
-    (lambda args
-        (apply values (map f args))))
-```
+=== "Scheme"
 
-``` {.scheme .repl #scheme-repl}
-(define (square x) (* x x))
-```
+    ``` {.scheme #combinators}
+    (define (vmap f)
+        (lambda args
+            (apply values (map f args))))
+    ```
 
-``` {.scheme .repl #scheme-repl}
-(define dot (compose + (vmap square)))
-```
+    ``` {.scheme .repl #scheme-repl}
+    (define (square x) (* x x))
+    ```
 
-``` {.scheme .repl #scheme-repl}
-(dot 1 2 3)
-```
+    ``` {.scheme .repl #scheme-repl}
+    (define dot (compose + (vmap square)))
+    ```
+
+    ``` {.scheme .repl #scheme-repl}
+    (dot 1 2 3)
+    ```
+
+=== "Python"
+
+    ``` {.python #combinators-python}
+    def vmap(f):
+        def vmapped(*args):
+            return map(f, args)
+        return vmapped
+    ```
+
+    ``` {.python .repl #python-repl}
+    from sdff.combinators import compose, splat, vmap
+    from functools import partial
+
+    def sqr(x):
+        return x*x
+    dot = compose(sum, partial(map, sqr))
+    dot([1, 2, 3])
+    ```
 
 We now continue to write the `iterate` function:
 

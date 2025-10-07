@@ -2,17 +2,24 @@
   "files": [
     {
       "deps": [],
+      "hexdigest": "960d28805c27f05af3029cf5ab07c72a4db3533646e597eff6e7fff6850acccf",
+      "modified": "2025-10-07T15:46:57.959281",
+      "path": ".entangled/repl-session/python-ch2.json",
+      "size": 583
+    },
+    {
+      "deps": [],
       "hexdigest": "ef1149815a7d4ffca85d05c4faf98671706439d877ea0989534472d8b8edbd86",
       "modified": "2025-10-06T00:46:10.876045",
       "path": ".entangled/repl-session/scheme-ch2.json",
       "size": 1145
     },
     {
-      "deps": [],
-      "hexdigest": "6634f15eb56ced15d140d778dc6dab502173305203fd85362c88ae7c2d117f8d",
-      "modified": "2025-10-07T00:16:52.419182",
+      "deps": null,
+      "hexdigest": "fb679882305bc9b801ca1ae15acce91c014b4b7b9c08da4444a948bc57790ed9",
+      "modified": "2025-10-07T15:46:38.457470",
       "path": "docs/ch2-dsl.md",
-      "size": 12599
+      "size": 14084
     },
     {
       "deps": null,
@@ -20,6 +27,24 @@
       "modified": "2025-10-06T17:01:42.178161",
       "path": "docs/index.md",
       "size": 804
+    },
+    {
+      "deps": [
+        "docs/ch2-dsl.md"
+      ],
+      "hexdigest": "c705ee09e370f0eb7af6074f910c4fbc1093872d244d35942bfddceb36dfc035",
+      "modified": "2025-10-07T15:22:58.042967",
+      "path": "python/sdff/__init__.py",
+      "size": 137
+    },
+    {
+      "deps": [
+        "docs/ch2-dsl.md"
+      ],
+      "hexdigest": "ae1c40b434a3e2cb86154655a27693fc8f55b25b5268e6c1517945dddb849c03",
+      "modified": "2025-10-07T15:40:48.648862",
+      "path": "python/sdff/combinators.py",
+      "size": 725
     },
     {
       "deps": [
@@ -60,6 +85,8 @@
   ],
   "source": [],
   "target": [
+    "python/sdff/__init__.py",
+    "python/sdff/combinators.py",
     "scheme/checkers.scm",
     "scheme/combinators.scm",
     "scheme/invertibles.scm",

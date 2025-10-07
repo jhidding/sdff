@@ -2,7 +2,6 @@
 name = "sdff"
 version = "0.1.0"
 description = "Virtual env for running entangled and building docs."
-authors = ["Johan Hidding"]
 # You may still want to add a license here
 # license = "Apache-2.0"
 readme = "README.md"
@@ -15,5 +14,17 @@ dependencies = [
     "repl-session",
 ]
 
+[build-system]
+requires = ["uv_build>=0.8.24,<0.9"]
+build-backend = "uv_build"
+
 [tool.uv.sources]
 repl-session = { path = "../../../../home/johannes/Projects/entangled/repl-session" }
+
+[tool.uv]
+package = true
+
+[tool.uv.build-backend]
+module-name = "sdff"
+module-root = "python"
+source-exclude = ["site", "scheme"]
