@@ -11,15 +11,11 @@ dependencies = [
     "mkdocs>=1.6.1",
     "mkdocs-entangled-plugin>=0.5.0",
     "mkdocs-material>=9.6.21",
-    "repl-session",
 ]
 
 [build-system]
 requires = ["uv_build>=0.8.24,<0.9"]
 build-backend = "uv_build"
-
-[tool.uv.sources]
-repl-session = { path = "../entangled/repl-session", editable = true }
 
 [tool.uv]
 package = true
