@@ -5,7 +5,7 @@ description = "Virtual env for running entangled and building docs."
 # You may still want to add a license here
 # license = "Apache-2.0"
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.13,<3.14"
 dependencies = [
     "entangled-cli>=2.2.1",
     "mkdocs>=1.6.1",
