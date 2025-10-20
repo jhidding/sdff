@@ -403,6 +403,28 @@ Maybe, some day I'll have the patience to implement this feature that already ex
 
 This seems a little bit more fun. We build an engine that can check legality of checkers moves.
 
+``` {.python file=python/sdff/draughts.py}
+"""
+Implements the rules for the game of Draughts (not Checkers!)
+"""
+
+def cartesian_product_2[T, U](a: Iterable[T], b: Iterable[U]) -> Iterable[tuple[T, U]]:
+    return [(i, j) for i in a for j in b]
+
+class Colour(StrEnum):
+    WHITE = "white"
+    BLACK = "black"
+
+@dataclass
+class Board:
+    size: int
+    turn: Colour
+    fields: bytearray
+
+
+```
+
+
 ``` {.scheme file=scheme/checkers.scm}
 (library (checkers)
   (export range cartesian-product make-board current-pieces)

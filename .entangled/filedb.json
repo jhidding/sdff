@@ -16,15 +16,15 @@
     },
     {
       "deps": null,
-      "hexdigest": "fb679882305bc9b801ca1ae15acce91c014b4b7b9c08da4444a948bc57790ed9",
-      "modified": "2025-10-07T15:46:38.457470",
+      "hexdigest": "9cb7e96d4ff341fe00f3ef33d5d319e348f01db2ef7d7b9acfcc1696fee1f2c8",
+      "modified": "2025-10-09T16:45:51.423023",
       "path": "docs/ch2-dsl.md",
-      "size": 14084
+      "size": 14478
     },
     {
       "deps": null,
       "hexdigest": "3ca7cdc6e0d692857ce8bf26b605180c442c6b077570b962f0a238fdfadbef51",
-      "modified": "2025-10-06T17:01:42.178161",
+      "modified": "2025-10-05T21:04:42.025687",
       "path": "docs/index.md",
       "size": 804
     },
@@ -45,6 +45,15 @@
       "modified": "2025-10-07T15:40:48.648862",
       "path": "python/sdff/combinators.py",
       "size": 725
+    },
+    {
+      "deps": [
+        "docs/ch2-dsl.md"
+      ],
+      "hexdigest": "c56393f166da2a099535a834e1e8f297bede0ca9e8c9b694ab1e17bc2a7cf057",
+      "modified": "2025-10-09T16:45:56.623034",
+      "path": "python/sdff/draughts.py",
+      "size": 415
     },
     {
       "deps": [
@@ -87,6 +96,7 @@
   "target": [
     "python/sdff/__init__.py",
     "python/sdff/combinators.py",
+    "python/sdff/draughts.py",
     "scheme/checkers.scm",
     "scheme/combinators.scm",
     "scheme/invertibles.scm",
