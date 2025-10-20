@@ -15,7 +15,6 @@ Main module for the Software Design for Flexibility book.
 ```
 
 ``` {.python .repl #python-repl}
-
 #| session: .entangled/repl-session/python-ch2.json
 ```
 
@@ -112,6 +111,7 @@ Example:
 
     def sqr(x):
         return x*x
+
     dot = compose(sum, partial(map, sqr))
     dot([1, 2, 3])
     ```
@@ -197,7 +197,7 @@ Now we split the `parallel-combine` routine in two parts.
 The following computes $2^4$, $2 \times 4$, $2 / 4$, $2 + 4$ and $2 - 4$ all in one go!
 
 ``` {.scheme .repl #scheme-repl}
-((parallel-combine list expt * / + -) 2 4)
+((parallel-combine list expt * / + -) 2 5)
 ```
 
 ### Rest of the section

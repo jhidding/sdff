@@ -9,9 +9,9 @@ change_prompt = '(waiter-prompt-string "{key}>")'
 prompt = "{key}> "
 
 [hook.repl.config.Python]
-command = "python -q"
+command = "uv run python -q"
 first_prompt = ">>>"
 change_prompt = 'import sys; sys.ps1 = "{key}>>> "; sys.ps2 = "{key}+++ "'
 prompt = "{key}>>> "
 continuation_prompt = "{key}\\+\\+\\+ "
-environment = { NO_COLOR = "1" }
+environment = { NO_COLOR = "1", PYTHON_BASIC_REPL = "1" }

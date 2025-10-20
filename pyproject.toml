@@ -11,6 +11,7 @@ dependencies = [
     "mkdocs>=1.6.1",
     "mkdocs-entangled-plugin>=0.5.0",
     "mkdocs-material>=9.6.21",
+    "repl-session",
 ]
 
 [build-system]
@@ -24,3 +25,6 @@ package = true
 module-name = "sdff"
 module-root = "python"
 source-exclude = ["site", "scheme"]
+
+[tool.uv.sources]
+repl-session = { git = "https://github.com/entangled/repl-session" }
