@@ -1,4 +1,69 @@
-; ~/~ begin <<docs/ch2-4-checkers.md#scheme/checkers.scm>>[init]
+# Checkers
+
+This seems a little bit more fun. We build an engine that can check legality of checkers moves.
+
+``` {.scheme .repl #checkers-repl}
+;| session: .entangled/repl-session/checkers.json
+(import (rnrs)
+        (combinators)
+        (utility)
+        (checkers)
+        )
+```
+
+## Utility functions
+
+``` {.scheme file=scheme/utility.scm}
+(library (utility)
+  (export range unit-range cartesian-product)
+  (import (rnrs) (combinators))
+
+  <<scheme-utility>>
+)
+```
+
+We'll need some utility functions. The `range` and `unit-range` functions, 
+
+``` {.scheme .repl #checkers-repl}
+(range 10 40 5)
+```
+
+``` {.scheme .repl #checkers-repl}
+(unit-range 30 40)
+```
+
+``` {.scheme #scheme-utility}
+(define (range a b step)
+   (do ((x a (+ x step))
+        (r '() (cons x r)))
+       ((>= x b) (reverse r))))
+
+(define (unit-range a b) (range a b 1))
+```
+
+And the `cartesian-product` functionn
+
+``` {.scheme .repl #checkers-repl}
+(cartesian-product '(1 2 3) '(a b c) '(#f #t))
+```
+
+``` {.scheme #scheme-utility}
+(define cartesian-product-2 (curry (f as bs)
+  (apply append (map (lambda (a) (map (lambda (b) (f a b)) bs)) as))))
+
+(define (cartesian-product . args)
+  (fold-right (cartesian-product-2 cons) '(()) args))
+```
+
+## Domain model
+
+Next we need to implement the *domain model*. We are given a list of functions to implement.
+
+``` {.scheme .repl #checkers-repl}
+
+```
+
+``` {.scheme file=scheme/checkers.scm}
 (library (checkers)
   (export range cartesian-product make-board current-pieces)
   (import (rnrs)
@@ -60,4 +125,4 @@
       (vector-ref (board-fields b) (car pos))
       (cadr pos)))
 )
-; ~/~ end
+```
