@@ -43,7 +43,7 @@
        (do ((x seed (g x))
             (result '() (cons (f x) result)))
            ((p x) (cons (tail-gen x) (reverse result)))))))
-  
+
   (define (string-join sep lst)
     (if (null? lst)
       ""

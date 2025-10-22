@@ -34,7 +34,7 @@
       ((_ <M>
           (<formals> ... :: <f>)
           <rest> ...)
-       
+
        (call-with-values
          (lambda () <f>)
          (lambda (<formals> ...)
