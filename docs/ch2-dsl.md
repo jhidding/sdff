@@ -15,8 +15,9 @@ Main module for the Software Design for Flexibility book.
 ```
 
 ``` {.python .repl #python-repl}
-
 #| session: .entangled/repl-session/python-ch2.json
+import sys
+sys.version
 ```
 
 ## Combinators

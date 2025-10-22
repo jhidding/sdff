@@ -3,8 +3,8 @@
 ## Receive
 This is SRFI-8.
 
-``` {.scheme title="src/utility/receive.scm"}
-(library (utility receive)
+``` {.scheme file="scheme/std/receive.scm"}
+(library (std receive)
   (export receive)
   (import (rnrs (6)))
 
@@ -20,7 +20,7 @@ This is SRFI-8.
 
 ## Aux keyword
 
-``` {.scheme title="src/utility/aux-keyword.scm"}
+``` {.scheme file="scheme/utility/aux-keyword.scm"}
 #| Code snippet from Andy Keep |#
 (library (utility aux-keyword)
   (export define-auxiliary-keyword
@@ -44,7 +44,7 @@ This is SRFI-8.
 
 ## Cut
 
-``` {.scheme title="src/utility/cut.scm"}
+``` {.scheme file="scheme/std/cut.scm"}
 #| REFERENCE IMPLEMENTATION FOR SRFI-26 "CUT"
  | ==========================================
  |
@@ -84,7 +84,7 @@ This is SRFI-8.
  |     se          : slots-or-exprs, the qualifiers of the macro
  |#
 
-(library (utility cut)
+(library (std cut)
   (export cut cute <> <...>)
 
   (import (rnrs (6))
@@ -156,7 +156,7 @@ This is SRFI-8.
 ## Yasos
 Yasos is **Y**et **A**nother **S**cheme **O**bject **S**ystem. It's just awesome because its so simple.
 
-``` {.scheme title="src/utility/yasos.scm"}
+``` {.scheme file="scheme/yasos.scm"}
 #| YASOS, Ken Dickey's 'Yet Another Scheme Object System'. The original
  | paper including most of this source is included in
  |
@@ -166,7 +166,7 @@ Yasos is **Y**et **A**nother **S**cheme **O**bject **S**ystem. It's just awesome
  | code is considered to be in the public domain.
  |#
 
-(library (utility yasos)
+(library (yasos)
   (export
     instance?
     define-predicate
@@ -232,86 +232,26 @@ Yasos is **Y**et **A**nother **S**cheme **O**bject **S**ystem. It's just awesome
 )
 ```
 
-## PMatch
+## Match
 
-``` {.scheme title="src/utility/pmatch.scm"}
-(library (utility pmatch)
-  (export pmatch)
-  (import (rnrs (6)))
+We use SRFI-241 to do pattern matching.
 
-(define-syntax pmatch
-  (syntax-rules (else guard)
-    ((_ v (e ...) ...)
-     (pmatch-aux #f v (e ...) ...))
-    ((_ v name (e ...) ...)
-     (pmatch-aux name v (e ...) ...))))
-
-(define-syntax pmatch-aux
-  (syntax-rules (else guard)
-    ((_ name (rator rand ...) cs ...)
-     (let ((v (rator rand ...)))
-       (pmatch-aux name v cs ...)))
-    ((_ name v)
-     (begin
-       (if 'name
-           (begin (display "pmatch ") (display 'name) (display " failed") (newline)
-                  (display v) (newline))
-           (begin (display "pmatch failed") (newline) (display v) (newline)))
-       (error 'pmatch "match failed")))
-    ((_ name v (else e0 e ...)) (begin e0 e ...))
-    ((_ name v (pat (guard g ...) e0 e ...) cs ...)
-     (let ((fk (lambda () (pmatch-aux name v cs ...))))
-       (ppat v pat (if (and g ...) (begin e0 e ...) (fk)) (fk))))
-    ((_ name v (pat e0 e ...) cs ...)
-     (let ((fk (lambda () (pmatch-aux name v cs ...))))
-       (ppat v pat (begin e0 e ...) (fk))))))
-
-(define-syntax ppat
-  (syntax-rules (? comma unquote)
-    ((_ v ? kt kf) kt)
-    ((_ v () kt kf) (if (null? v) kt kf))
-;   ((_ v (quote lit) kt kf) (if (equal? v (quote lit)) kt kf))
-    ((_ v (unquote var) kt kf) (let ((var v)) kt))
-    ((_ v (x . y) kt kf)
-     (if (pair? v)
-       (let ((vx (car v)) (vy (cdr v)))
-         (ppat vx x (ppat vy y kt kf) kf))
-       kf))
-    ((_ v lit kt kf) (if (equal? v (quote lit)) kt kf))))
-)
-```
-
-### tests
-
-``` {.scheme title="test/test-pmatch.scm}
-(import (rnrs (6))
-        (testing assertions)
-        (utility pmatch))
-
-(define (test-pmatch)
-  (assert-equal
-   (pmatch '(1 2 3)
-     ((,a . ,b) b))
-   '(2 3))
-
-  (assert-equal
-    (pmatch '(define (hello) 'world)
-      ((define (,name . ,args) . ,body)
-       name)
-      (else #f))
-    'hello)
+``` {.scheme file="scheme/std/match.scm"}
+(library (std match)
+  (export match unquote ... _ -> guard)
+  (import (srfi :241))
 )
 ```
 
 ## algorithms
 
-``` {.scheme title="src/utility/algorithms.scm"}
+``` {.scheme file="scheme/utility/algorithms.scm"}
 (library (utility algorithms)
   (export append-reverse append-map string-join unfold range iterate-n find-index
           split-at group-by combinations unique cartesian-product)
   (import (rnrs (6))
-          (utility receive)
-          (utility cut))
+          (std receive)
+          (std cut))
 
   (define (append-reverse rev-head tail)
     (if (null? rev-head)
@@ -350,7 +290,7 @@ Yasos is **Y**et **A**nother **S**cheme **O**bject **S**ystem. It's just awesome
        (do ((x seed (g x))
             (result '() (cons (f x) result)))
            ((p x) (cons (tail-gen x) (reverse result)))))))
-  
+
   (define (string-join sep lst)
     (if (null? lst)
       ""
@@ -419,7 +359,7 @@ Yasos is **Y**et **A**nother **S**cheme **O**bject **S**ystem. It's just awesome
 )
 ```
 
-``` {.scheme title="test/test-utility.scm"}
+``` {.scheme file="test/test-utility.scm"}
 (import (rnrs (6))
         (testing assertions)
         (utility algorithms))
@@ -445,142 +385,10 @@ Yasos is **Y**et **A**nother **S**cheme **O**bject **S**ystem. It's just awesome
 
 ## Formatted printing
 
-``` {.scheme title="src/format/format.scm"}
-(library (format format)
-  (export format print println formatter)
-  (import (rnrs (6))
-          (parsing parsing)
-          (monads monads))
-
-  (define-record-type spec
-    (fields fill align sign sharp zero width precision type))
-
-  (define identifier
-    (seq <parsing>
-         (satisfies item char-alphabetic?)
-         (many-char* (satisfies item 
-                                (lambda (c)
-                                        (or (char-alphabetic? c)
-                                            (char-numeric? c)
-                                            ((char-in "_-") c)))))
-         (flush)))
-
-  (define argument
-    (choice integer identifier))
-
-  (define parameter
-    (seq <parsing>
-         (x <- argument)
-         (literal "$")
-         (parsing-return x)))
-
-  (define count
-    (choice parameter integer))
-
-  (define spec-parser
-    (seq <parsing>
-         (fill      <- (optional (look-ahead
-                                  (one item)
-                                  (one (char= #\< #\^ #\>)))))
-         (align     <- (optional (one (char= #\< #\^ #\>))))
-         (sign      <- (optional (one (char= #\+ #\-))))
-         (sharp     <- (optional (one (char= #\#))))
-         (zero      <- (optional (one (char= #\0))))
-         (width     <- (optional (choice count (one (char= #\*)))))
-         (precision <- (optional (seq <parsing> (one (char= #\.)) count)))
-         (type      <- (optional identifier))
-         (parsing-return
-           (make-spec fill align sign sharp zero width precision type))))
-
-  (define escape
-    (choice (seq <parsing>
-                 (literal "{{")
-                 (parsing-return "{"))
-            (seq <parsing>
-                 (literal "}}")
-                 (parsing-return "}"))))
-
-  (define clause
-    (seq <parsing>
-         (literal "{")
-         (arg <- (optional argument))
-         (fmt <- (optional (seq <parsing>
-                                (literal ":")
-                                spec-parser)))
-         (literal "}")
-         (parsing-return (cons arg fmt))))
-
-  (define text
-    (some-char (char!= #\{ #\})))
-
-  (define format-string-parser
-    (many (choice text escape clause)))
-
-  (define (parse-format-string str)
-    (parse-string
-     format-string-parser
-     str))
-
-  (define (format-value spec value port)
-    ;;(display "formating: ") (write value) (display ", type: ")
-    ;;(write (if (nothing? spec) "<nothing>" (spec-type spec))) (newline)
-    (cond
-     ((nothing? spec)            (display value port))
-     ((equal? (spec-type spec) "s") (write value port))
-     ((equal? (spec-type spec) "f") (write (inexact value) port))
-     (else (display value port))))
-
-  (define (format-arguments fmt-lst args port)
-    (let loop ((iter-args args)
-               (items     fmt-lst))
-      (cond
-       ((null? items)         #f)
-
-       ((string? (car items))
-        (display (car items) port)
-        (loop iter-args (cdr items)))
-
-       ((pair?   (car items))
-        (cond
-         ((nothing? (caar items))
-          (when (null? iter-args)
-            (raise "format: not enough arguments"))
-          (format-value (cdar items)
-                        (car iter-args)
-                        port)
-          (loop (cdr iter-args)
-                (cdr items)))
-
-         ((number? (caar items))
-          (when (>= (caar items) (length args))
-            (raise "format: not enough arguments"))
-          (format-value (cdar items)
-                        (list-ref args (caar items))
-                        port)
-          (loop iter-args
-                (cdr items)))
-
-         ((string? (caar items))
-          (raise "format: named arguments not supported"))
-
-         (else (raise "format: sanity failure"))))
-
-       (else (raise "format: sanity failure")))))
-
-  (define (formatter str)
-    (let ((fmt-lst (parse-format-string str)))
-      (lambda args
-        (let-values (((output g) (open-string-output-port)))
-          (format-arguments fmt-lst args output)
-          (g)))))
-
-  (define (format str . args)
-    (apply (formatter str) args))
-
-  (define (print str . args)
-    (display (apply (formatter str) args)))
-
-  (define (println str . args)
-    (apply print str args) (newline))
+``` {.scheme file="scheme/std/format.scm"}
+(library (std format)
+  (export format)
+  (import (only (chezscheme) format))
 )
 ```
+

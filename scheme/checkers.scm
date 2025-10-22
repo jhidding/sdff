@@ -1,6 +1,6 @@
 ; ~/~ begin <<docs/ch2-4-checkers.md#scheme/checkers.scm>>[init]
 (library (checkers)
-  (export range cartesian-product make-board current-pieces)
+  (export make-board board->rtf current-pieces is-position-on-board? board-get)
   (import (rnrs)
           (combinators)
           (utility))
@@ -26,6 +26,22 @@
   (define white-single (make-piece 'white 'single))
   (define black-crowned (make-piece 'black 'crowned))
   (define white-crowned (make-piece 'white 'crowned))
+
+  (define (piece->rtf p)
+    (if p
+      `((fg ,(piece-colour p))
+        ,(if (eq? (piece-type p) 'single)
+           "⛂ "
+           "⛃ "))
+      "  "))
+
+  (define (board->rtf b)
+    (define cel->rtf (curry (r c)
+      `((bg ,(if (odd? (+ r c)) 'magenta 'blue))
+        ,(piece->rtf (board-get b (list r c))))))
+    (define (row->rtf r)
+      (append (map  (cel->rtf r) (unit-range 0 (board-size b))) '(reset newline)))
+    (apply append (map row->rtf (unit-range 0 (board-size b)))))
 
   (define start-position (curry (size row col)
     (cond
@@ -55,9 +71,18 @@
            (odd? (+ col row)))))
 
   (define (board-get b pos)
-    (assert (is-position-on-board? b pos))
-    (vector-ref
-      (vector-ref (board-fields b) (car pos))
-      (cadr pos)))
+    (and
+      (is-position-on-board? b pos)
+      (vector-ref
+        (vector-ref (board-fields b) (car pos))
+        (cadr pos))))
+
+  (define (position-info pos board)
+    (let ((player (board-turn board))
+	  (status (board-get board pos)))
+      (cond
+	((not status) 'unoccupied)
+	((eq? (piece-colour status) player) 'occupied-by-self)
+	(else 'occupied-by-opponent))))
 )
 ; ~/~ end

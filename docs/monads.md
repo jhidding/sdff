@@ -1,6 +1,6 @@
 # Monads in Scheme
 
-``` {.scheme title="src/monads/monads.scm"}
+``` {.scheme file="scheme/monads/monads.scm"}
 (library (monads monads)
   (export seq make-monad monad? monad-return monad-bind <- ::
           <maybe> maybe-bind maybe-return *nothing* nothing?
@@ -18,12 +18,12 @@
 )
 ```
 
-``` {.scheme title="src/monads/syntax.scm"}
+``` {.scheme file="scheme/monads/syntax.scm"}
 (library (monads syntax)
   (export seq make-monad monad? monad-return monad-bind <- ::)
 
   (import (rnrs (6))
-          (utility receive)
+          (std receive)
           (utility aux-keyword))
 
   (define-auxiliary-keywords <- ::)
@@ -54,7 +54,7 @@
       ((_ <M>
           (<formals> ... :: <f>)
           <rest> ...)
-       
+
        (call-with-values
          (lambda () <f>)
          (lambda (<formals> ...)
@@ -76,7 +76,7 @@
 
 ### Maybe
 
-``` {.scheme title="src/monads/maybe.scm"}
+``` {.scheme file="scheme/monads/maybe.scm"}
 (library (monads maybe)
   (export nothing? *nothing* maybe-bind maybe-return <maybe>)
 
@@ -100,7 +100,7 @@
 
 ### Support functions
 
-``` {.scheme title="src/monads/support.scm"}
+``` {.scheme file="scheme/monads/support.scm"}
 (library (monads support)
   (export seq-map)
   (import (rnrs (6))
@@ -115,12 +115,16 @@
         (seq M
           (x <- (apply f (map car a)))
           (loop (map cdr a) (cons x b))))))
+
+  (define (seq-compose M . fs)
+    (let ((c2 (lambda (f g) (lambda (x) ((monad-bind M) (g x) f)))))
+      (fold-right c2 values fs)))
 )
 ```
 
 ## tests
 
-``` {.scheme title="test/test-monads.scm"}
+``` {.scheme file="test/test-monads.scm"}
 (import (rnrs (6))
         (monads syntax)
         (monads maybe))
