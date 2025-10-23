@@ -22,7 +22,7 @@ This seems a little bit more fun. We build an engine that can check legality of 
 )
 ```
 
-We'll need some utility functions. The `range` and `unit-range` functions, 
+We'll need some utility functions. The `range` and `unit-range` functions,
 
 ``` {.scheme .repl #checkers-repl}
 (range 10 40 5)
@@ -146,12 +146,23 @@ Next we need to implement the *domain model*. We are given a list of functions t
         (vector-ref (board-fields b) (car pos))
         (cadr pos))))
 
-  (define (position-info pos board)
+  (define (position-info board pos)
     (let ((player (board-turn board))
 	  (status (board-get board pos)))
       (cond
-	((not status) 'unoccupied)
-	((eq? (piece-colour status) player) 'occupied-by-self)
-	(else 'occupied-by-opponent))))
+        ((not status) 'unoccupied)
+        ((eq? (piece-colour status) player) 'occupied-by-self)
+        (else 'occupied-by-opponent))))
+
+  (define (is-position-unoccupied? board pos)
+    (not (board-get board pos)))
+
+  (define (is-position-occupied-by-self? board pos)
+    (let ((s (board-get board pos)))
+      (and s (eq? (piece-colour s) (board-turn board))))))
+
+  (define (is-position-occupied-by-opponent? board pos)
+    (let ((s (board-get board pos)))
+      (and s (not (eq? (piece-colour s) (board-turn board)))))))
 )
 ```

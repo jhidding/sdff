@@ -77,12 +77,23 @@
         (vector-ref (board-fields b) (car pos))
         (cadr pos))))
 
-  (define (position-info pos board)
+  (define (position-info board pos)
     (let ((player (board-turn board))
 	  (status (board-get board pos)))
       (cond
-	((not status) 'unoccupied)
-	((eq? (piece-colour status) player) 'occupied-by-self)
-	(else 'occupied-by-opponent))))
+        ((not status) 'unoccupied)
+        ((eq? (piece-colour status) player) 'occupied-by-self)
+        (else 'occupied-by-opponent))))
+
+  (define (is-position-unoccupied? board pos)
+    (not (board-get board pos)))
+
+  (define (is-position-occupied-by-self? board pos)
+    (let ((s (board-get board pos)))
+      (and s (eq? (piece-colour s) (board-turn board))))))
+
+  (define (is-position-occupied-by-opponent? board pos)
+    (let ((s (board-get board pos)))
+      (and s (not (eq? (piece-colour s) (board-turn board)))))))
 )
 ; ~/~ end
